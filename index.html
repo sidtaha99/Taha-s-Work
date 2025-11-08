@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Grand Birthday Wish! - [Recipient's Name]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* BASE STYLES */
+        :root {
+            --primary-color: #ff69b4; /* Deep Pink/Rose Gold */
+            --secondary-color: #f7f7f7; /* Soft White */
+            --accent-color: #ffd700; /* Gold */
+            --bg-color: #2c0e3a; /* Deep Purple Night Sky */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* CONTAINER AND ANIMATION */
+        #wish-container {
+            position: relative;
+            min-height: 100vh;
+            text-align: center;
+            padding: 50px 20px;
+            z-index: 1;
+        }
+        
+        /* CONFETTI/FLOWER ANIMATION CONTAINER */
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .petal {
+            position: absolute;
+            background-color: var(--primary-color);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotateZ(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+        }
+
+
+        /* HEADINGS & TEXT */
+        h1, h2 {
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 0 0 10px var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            color: var(--accent-color);
+        }
+
+        .section {
+            background: rgba(44, 14, 58, 0.85); /* Slightly transparent background for readability */
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .message-box {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: left;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        /* POETRY SECTION */
+        .poetry-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .poetry-column {
+            flex: 1;
+            padding: 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .poetry-column:last-child {
+            border-right: none;
+        }
+
+        .poetry-column h3 {
+            color: var(--accent-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .hindi-text {
+            font-size: 1.4rem;
+            line-height: 2;
+        }
+
+        .roman-text, .english-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* PHOTO SECTION (Placeholder) */
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #4a1961;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #ccc;
+            border: 3px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        /* MUSIC/FOOTER */
+        .footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* MEDIA QUERIES for Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 3rem; }
+            .section { padding: 20px 10px; margin: 20px auto; }
+            .poetry-grid { flex-direction: column; }
+            .poetry-column { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+            .hindi-text { font-size: 1.2rem; }
+            .photo-placeholder { width: 80px; height: 80px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="confetti-container"></div>
+    <div id="wish-container">
+        
+        <h1>Happy Birthday, My Dear! 🥳</h1>
+        <p style="font-size: 1.3rem; color: var(--primary-color);">A Wish as Wonderful as You</p>
+
+        <div class="section">
+            <h2>✨ The Special Message ✨</h2>
+            <div class="message-box">
+                <p><strong>Dearest [Recipient's Name],</strong></p>
+                <p>On this beautiful day, may every moment be filled with the warmth, joy, and light you bring into the world. You are a treasure, and your journey deserves all the happiness it can hold.</p>
+                <p>I remember [**Insert a simple, sweet memory here**], and it reminds me just how precious our moments are. Thank you for being you—kind, brilliant, and absolutely amazing.</p>
+                <p>May the year ahead bring you closer to your wildest dreams and be your best one yet!</p>
+                <p style="text-align: right; margin-top: 30px;">With eternal love and best wishes,<br>
+                **[Your Name]**</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🌸 Nagma-e-Dil (Song of the Heart) 🌸</h2>
+            <div class="poetry-grid">
+                <div class="poetry-column">
+                    <h3>हिन्दी (Devanagari)</h3>
+                    <p class="hindi-text">जन्मदिन की खुशियाँ हो हज़ार,</p>
+                    <p class="hindi-text">हर पल में भरा हो आपका प्यार।</p>
+                    <p class="hindi-text">सितारों सी चमकती रहे ये दुनिया,</p>
+                    <p class="hindi-text">सदा मुस्कुराता रहे आपका संसार।</p>
+                </div>
+                <div class="poetry-column">
+                    <h3>Roman Hindi</h3>
+                    <p class="roman-text">Janamdin ki khushiyaan ho hazaar,</p>
+                    <p class="roman-text">Har pal mein bhara ho aapka pyaar.</p>
+                    <p class="roman-text">Sitaaron si chamakti rahe ye duniya,</p>
+                    <p class="roman-text">Sada muskurata rahe aapka sansaar.</p>
+                </div>
+                <div class="poetry-column">
+                    <h3>English (Translation)</h3>
+                    <p class="english-text">May your birthdays be filled with a thousand joys,</p>
+                    <p class="english-text">May every moment be full of your love.</p>
+                    <p class="english-text">May this world shine like the stars for you,</p>
+                    <p class="english-text">May your world always keep smiling.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📸 Cherished Memories 📸</h2>
+            <p>Imagine your favorite photos here!</p>
+            <div class="photo-gallery">
+                <div class="photo-placeholder">Photo 1</div>
+                <div class="photo-placeholder">Photo 2</div>
+                <div class="photo-placeholder">Photo 3</div>
+                <div class="photo-placeholder">Photo 4</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🎶 **Background Music Placeholder:** *[Insert Audio Tag here for a gentle instrumental track]*</p>
+        </div>
+
+    </div>
+
+    <script>
+        // JAVASCRIPT FOR FLOWER/PETAL ANIMATION
+        const confettiContainer = document.getElementById('confetti-container');
+        const count = 50; // Number of petals
+        const colors = ['#ff69b4', '#ffe4e1', '#ffffff', '#ffb6c1'];
+
+        for (let i = 0; i < count; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // Randomize position, size, color, and animation duration
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4s to 7s
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            petal.style.width = Math.random() * 8 + 6 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            confettiContainer.appendChild(petal);
+        }
+        
+        // Music Autoplay Note: Modern browsers often block autoplay without user interaction.
+        // You would typically use:
+        // <audio autoplay loop>
+        //   <source src="your-music-file.mp3" type="audio/mp3">
+        // </audio> 
+        // in the HTML and possibly add a simple click-to-play button.
+
+    </script>
+</body>
+</html>
