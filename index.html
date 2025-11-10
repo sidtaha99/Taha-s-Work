@@ -3,67 +3,484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Grand Birthday Wish! - [Recipient's Name]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Happy Birthday, My Dear Aiman Fatima!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load qrcode.js for generating the QR code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        /* BASE STYLES */
+        /* Define custom font and body aesthetics */
         :root {
-            --primary-color: #ff69b4; /* Deep Pink/Rose Gold */
-            --secondary-color: #f7f7f7; /* Soft White */
-            --accent-color: #ffd700; /* Gold */
-            --bg-color: #2c0e3a; /* Deep Purple Night Sky */
+            font-family: 'Inter', sans-serif;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--secondary-color);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* CONTAINER AND ANIMATION */
-        #wish-container {
-            position: relative;
-            min-height: 100vh;
-            text-align: center;
-            padding: 50px 20px;
-            z-index: 1;
-        }
-        
-        /* CONFETTI/FLOWER ANIMATION CONTAINER */
-        #confetti-container {
-            position: fixed;
+        /* Confetti Animation Layer */
+        .confetti-layer {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             overflow: hidden;
-            z-index: 0;
+            pointer-events: none;
+            z-index: 0; /* Keep it behind the content */
         }
-        
-        .petal {
+
+        /* Keyframes for Confetti (subtle floating) */
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.5; }
+        }
+
+        .confetti {
             position: absolute;
-            background-color: var(--primary-color);
             width: 10px;
             height: 10px;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            opacity: 0.7;
-            animation: fall linear infinite;
+            animation: fall 10s linear infinite;
+        }
+        .confetti.gold { background: #FFD700; width: 12px; height: 12px; }
+        .confetti.pink { background: #FF69B4; width: 8px; height: 8px; }
+
+        /* Confetti positions and delays */
+        .confetti:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .confetti:nth-child(3) { left: 35%; animation-delay: 4s; }
+        .confetti:nth-child(4) { left: 50%; animation-delay: 6s; }
+        .confetti:nth-child(5) { left: 65%; animation-delay: 8s; }
+        .confetti:nth-child(6) { left: 75%; animation-delay: 1s; }
+        .confetti:nth-child(7) { left: 90%; animation-delay: 3s; }
+        .confetti:nth-child(8) { left: 5%; animation-delay: 5s; }
+        .confetti:nth-child(9) { left: 80%; animation-delay: 7s; }
+        .confetti:nth-child(10) { left: 45%; animation-delay: 9s; }
+
+        /* Custom animation for the heart icon */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotateZ(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+        .pulsing-heart {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        /* QR Code Styling */
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-placeholder {
+            height: 250px;
+            background-color: #fce7f3; /* Pink-100 */
+            border: 4px dashed #f9a8d4; /* Pink-300 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            color: #db2777; /* Pink-700 */
+            margin-bottom: 1.5rem;
+        }
+        .tts-button {
+            transition: all 0.2s;
+        }
+        .tts-button:disabled {
+            background-color: #a855f7;
+            cursor: not-allowed;
+        }
+        .tts-button.playing {
+             background-color: #c084fc;
+        }
+    </style>
+</head>
+<body class="bg-purple-900 min-h-screen flex flex-col items-center justify-center p-4 relative overflow-x-hidden">
+
+    <!-- Confetti Background Layer -->
+    <div class="confetti-layer">
+        <div class="confetti gold"></div>
+        <div class="confetti pink"></div>
+        <div class="confetti"></div>
+        <div class="confetti gold"></div>
+        <div class="confetti pink"></div>
+        <div class="confetti"></div>
+        <div class="confetti gold"></div>
+        <div class="confetti pink"></div>
+        <div class="confetti"></div>
+        <div class="confetti gold"></div>
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="w-full max-w-lg bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-10 lg:p-12 text-center relative z-10 border-4 border-pink-500 transform transition duration-500 hover:scale-[1.02]">
+
+        <!-- Decorative Elements (Flowers/Hearts) -->
+        <div class="absolute -top-6 left-6 text-4xl transform -rotate-12">
+            🌸
+        </div>
+        <div class="absolute -top-6 right-6 text-4xl transform rotate-12">
+            💖
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-pink-600 mb-4 tracking-tight leading-tight">
+            Happy Birthday, <span class="text-purple-700">Aiman Fatima!</span>
+        </h1>
+        
+        <p class="text-xl sm:text-2xl text-gray-700 font-serif italic mb-6">
+            To the queen of my world...
+        </p>
+        
+        <!-- PHOTO PLACEHOLDER (New) -->
+        <div class="photo-placeholder rounded-xl shadow-lg">
+            <span class="text-2xl">Upload Your Favorite Photo Here!</span>
+        </div>
+
+        <!-- Personalized Message Box - Combination of English & Romanized Hindi -->
+        <div class="bg-pink-50 border-l-4 border-pink-400 p-6 rounded-xl shadow-inner mb-4">
+            <div class="flex justify-between items-start">
+                <p id="mainMessageText" class="text-base md:text-lg text-gray-800 leading-relaxed text-left flex-grow">
+                    Dear Aiman Fatima, today is a truly special day, **aur aap mere liye sirf ek insaan nahi, poori duniya ho**. Your smile is pure magic; **Aapki muskurahat** meri har subah ko khubsurat bana deti hai. Har pal aapke saath ek haseen safar hai. May your life be filled with endless joy, **beshumar khushiyan**, and all the success you dream of. Wishing you a birthday as amazing as you are! Always keep shining! ✨
+                </p>
+                <button id="ttsButton" class="tts-button bg-purple-600 hover:bg-purple-700 text-white font-bold p-2 ml-4 rounded-full shadow-md text-sm transition duration-300" disabled>
+                    <span id="ttsIcon">🔊</span>
+                </button>
+            </div>
+            <div id="ttsStatus" class="text-xs text-purple-600 mt-2 hidden">Loading audio...</div>
+        </div>
+
+        <!-- Gemini-Powered Custom Shayari Generator (New Feature) -->
+        <div class="bg-purple-50 p-6 rounded-xl shadow-md mt-6">
+            <h3 class="text-xl font-bold text-purple-700 mb-4 flex items-center justify-center">
+                ✨ Custom Romantic Message Generator ✨
+            </h3>
+            <p class="text-sm text-gray-600 mb-3">
+                Need one more special line? Enter a keyword (e.g., *moonlight*, *memories*, *forever*) to generate a beautiful, personalized Shayari!
+            </p>
+            <input type="text" id="shayariKeyword" placeholder="Enter keyword here (e.g., love)" class="w-full p-3 mb-4 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500">
+            
+            <button id="generateButton" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-lg shadow-lg transition duration-300 transform hover:scale-[1.01]" disabled>
+                Generate New Shayari!
+            </button>
+
+            <div id="shayariOutput" class="mt-4 bg-white p-4 rounded-lg border border-pink-300 text-gray-800 italic text-left min-h-[40px] flex items-center justify-center text-sm hidden">
+                <!-- Generated Shayari will appear here -->
+            </div>
+            <div id="shayariLoading" class="hidden mt-4 text-sm text-purple-600">
+                Generating magic... Please wait.
+            </div>
+        </div>
+
+
+        <!-- Original Wish Button -->
+        <button id="wishButton" class="group bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 flex items-center justify-center mx-auto my-8">
+            <span class="pulsing-heart text-2xl mr-3">❤️</span>
+            <span class="text-lg">Send My Heartfelt Wish!</span>
+        </button>
+        
+        <!-- Confirmation Message (Hidden) -->
+        <div id="confirmationMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-6 transition-opacity duration-500 ease-out opacity-0">
+            Wish Sent! I hope you feel the love today and always! ✨
+        </div>
+
+
+        <hr class="my-6 border-pink-200">
+
+        <!-- QR Code Sharing Section -->
+        <div class="flex flex-col sm:flex-row items-center justify-between mt-6">
+            <div class="text-left mb-4 sm:mb-0 sm:mr-4">
+                <h3 class="text-lg font-bold text-purple-700">Share This Magic</h3>
+                <p class="text-xs text-gray-500">Scan this code to open the page instantly on mobile.</p>
+            </div>
+            <div id="qrcode" class="w-24 h-24">
+                <!-- QR code will be generated here -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- GEMINI API Configuration ---
+        const apiKey = ""; // API key is provided by the canvas environment
+        const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        const ttsApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+        
+        // --- Helper Functions for TTS (PCM to WAV Conversion) ---
+        function base64ToArrayBuffer(base64) {
+            const binaryString = atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcm16, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcm16.length * 2);
+            const view = new DataView(buffer);
+            let offset = 0;
+
+            function writeString(str) {
+                for (let i = 0; i < str.length; i++) {
+                    view.setUint8(offset + i, str.charCodeAt(i));
+                }
+                offset += str.length;
+            }
+
+            function writeUint32(val) {
+                view.setUint32(offset, val, true);
+                offset += 4;
+            }
+
+            function writeUint16(val) {
+                view.setUint16(offset, val, true);
+                offset += 2;
+            }
+
+            // RIFF chunk descriptor
+            writeString('RIFF');
+            writeUint32(36 + pcm16.length * 2); // ChunkSize
+            writeString('WAVE');
+            
+            // FMT sub-chunk
+            writeString('fmt ');
+            writeUint32(16); // Subchunk1Size (16 for PCM)
+            writeUint16(1); // AudioFormat (1 for PCM)
+            writeUint16(1); // NumChannels (1 mono)
+            writeUint32(sampleRate); // SampleRate
+            writeUint32(sampleRate * 2); // ByteRate (SampleRate * NumChannels * BitsPerSample/8)
+            writeUint16(2); // BlockAlign (NumChannels * BitsPerSample/8)
+            writeUint16(16); // BitsPerSample (16 bit)
+
+            // DATA sub-chunk
+            writeString('data');
+            writeUint32(pcm16.length * 2); // Subchunk2Size (NumSamples * NumChannels * BitsPerSample/8)
+
+            // Write PCM data
+            for (let i = 0; i < pcm16.length; i++) {
+                view.setInt16(offset, pcm16[i], true);
+                offset += 2;
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+        
+        // --- GEMINI TTS Function ---
+        async function playTts(text) {
+            const ttsButton = document.getElementById('ttsButton');
+            const ttsIcon = document.getElementById('ttsIcon');
+            const ttsStatus = document.getElementById('ttsStatus');
+            const originalIcon = '🔊';
+            const loadingIcon = '⏳';
+
+            if (ttsButton.disabled) return;
+
+            // 1. Set Loading State
+            ttsButton.disabled = true;
+            ttsIcon.textContent = loadingIcon;
+            ttsStatus.textContent = 'Loading audio...';
+            ttsStatus.classList.remove('hidden');
+
+            const payload = {
+                contents: [{
+                    parts: [{ text: `Say this heartfelt birthday message in a loving and warm tone, clearly pronouncing the Hinglish: ${text}` }]
+                }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: "Kore" }
+                        }
+                    }
+                },
+            };
+
+            try {
+                const response = await fetch(ttsApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                    const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                    if (!sampleRateMatch) throw new Error("Could not determine sample rate.");
+                    
+                    const sampleRate = parseInt(sampleRateMatch[1], 10);
+                    const pcmData = base64ToArrayBuffer(audioData);
+                    const pcm16 = new Int16Array(pcmData);
+                    
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+                    
+                    const audio = new Audio(audioUrl);
+                    
+                    // 2. Set Playing State
+                    ttsIcon.textContent = '▶️';
+                    ttsStatus.textContent = 'Playing...';
+                    ttsButton.classList.add('playing');
+
+                    audio.onended = () => {
+                        // 3. Reset State on End
+                        ttsIcon.textContent = originalIcon;
+                        ttsButton.disabled = false;
+                        ttsStatus.classList.add('hidden');
+                        ttsButton.classList.remove('playing');
+                    };
+
+                    await audio.play();
+
+                } else {
+                    console.error("TTS API response failed:", result);
+                    ttsStatus.textContent = 'Error playing audio.';
+                }
+
+            } catch (error) {
+                console.error("Error during TTS generation:", error);
+                ttsStatus.textContent = 'Failed to generate audio.';
+            } finally {
+                // Ensure button is re-enabled if an error occurs before playback starts
+                if (!ttsButton.classList.contains('playing')) {
+                    ttsIcon.textContent = originalIcon;
+                    ttsButton.disabled = false;
+                    setTimeout(() => ttsStatus.classList.add('hidden'), 3000); 
+                }
+            }
+        }
+
+        // --- GEMINI TEXT GENERATION Function (Shayari) ---
+        async function generateShayari(topic) {
+            const keywordInput = document.getElementById('shayariKeyword');
+            const generateBtn = document.getElementById('generateButton');
+            const outputDiv = document.getElementById('shayariOutput');
+            const loadingDiv = document.getElementById('shayariLoading');
+
+            if (!topic.trim()) {
+                outputDiv.textContent = "Please enter a keyword first!";
+                outputDiv.classList.remove('hidden');
+                return;
+            }
+
+            // 1. Set Loading State
+            generateBtn.disabled = true;
+            loadingDiv.classList.remove('hidden');
+            outputDiv.classList.add('hidden');
+
+            const systemPrompt = "You are a world-class Hindi-English (Hinglish) poet specializing in romantic, heartfelt birthday messages (Shayari). The output must be concise, beautiful, and directly address the user's loved one, Aiman Fatima, using Hinglish for maximum impact. The response must be only the poem, without any extra conversation, intro, or formatting (like bullet points or title).";
+
+            const userQuery = `Write a short, romantic Shayari for Aiman Fatima on her birthday, centered around the theme/keyword: "${topic}".`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            try {
+                const response = await fetch(textApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate a poem. Please try a different keyword.";
+
+                // 2. Display Result
+                outputDiv.textContent = text.trim();
+                outputDiv.classList.remove('hidden');
+
+            } catch (error) {
+                outputDiv.textContent = "An error occurred while connecting to the generator. Please try again.";
+                outputDiv.classList.remove('hidden');
+                console.error("Gemini API Error:", error);
+            } finally {
+                // 3. Reset State
+                generateBtn.disabled = false;
+                loadingDiv.classList.add('hidden');
+            }
         }
 
 
-        /* HEADINGS & TEXT */
-        h1, h2 {
+        // --- DOM Initialization ---
+        window.onload = function() {
+            
+            const wishButton = document.getElementById('wishButton');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            const generateButton = document.getElementById('generateButton');
+            const shayariKeyword = document.getElementById('shayariKeyword');
+            const mainMessageText = document.getElementById('mainMessageText');
+            const ttsButton = document.getElementById('ttsButton');
+
+            // Enable buttons after script is loaded
+            generateButton.disabled = false;
+            ttsButton.disabled = false;
+
+            // Event Listeners
+            wishButton.addEventListener('click', () => {
+                // Show confirmation message
+                confirmationMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    confirmationMessage.classList.add('opacity-100');
+                }, 10); // Small delay for CSS transition to work
+
+                // Disable button after click
+                wishButton.disabled = true;
+                wishButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+                // Optional: Hide after a few seconds
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('opacity-100');
+                    confirmationMessage.classList.add('opacity-0');
+                    setTimeout(() => {
+                        confirmationMessage.classList.add('hidden');
+                    }, 500); // Wait for transition
+                }, 5000);
+            });
+            
+            // TTS Click Handler
+            ttsButton.addEventListener('click', () => {
+                // We use innerText to ensure we capture all text content, including bold parts.
+                playTts(mainMessageText.innerText);
+            });
+
+            // Shayari Generation Click Handler
+            generateButton.addEventListener('click', () => {
+                generateShayari(shayariKeyword.value);
+            });
+
+
+            // --- QR Code Generation Logic (Unchanged) ---
+            const qrCodeElement = document.getElementById("qrcode");
+            
+            // Get the current URL of the page (Crucial for the scan-to-open feature)
+            const currentUrl = window.location.href;
+
+            // Generate the QR code inside the dedicated div
+            new QRCode(qrCodeElement, {
+                text: currentUrl,
+                width: 96,
+                height: 96,
+                colorDark : "#6b21a8", // Tailwind purple-700
+                colorLight : "#ffffff", // White
+                correctLevel : QRCode.CorrectLevel.M // Medium error correction
+            });
+
+            console.log("Birthday site loaded. QR Code generated for:", currentUrl);
+        };
+    </script>
+</body>
+    </html>        h1, h2 {
             font-family: 'Great Vibes', cursive;
             text-shadow: 0 0 10px var(--primary-color);
             margin-bottom: 20px;
@@ -269,4 +686,5 @@
 
     </script>
 </body>
+
 </html>
